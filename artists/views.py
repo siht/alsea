@@ -27,4 +27,5 @@ class AlbumViewSet(viewsets.ModelViewSet):
 
 
 class DiscographyListView(ListAPIView):
+    queryset = Artist.objects.all()
     serializer_class = DiscographySerializer
