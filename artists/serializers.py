@@ -31,6 +31,7 @@ class AlbumSerializer(serializers.ModelSerializer):
             'ntracks',
         )
 
+
 class NestedAlbumSerializer(serializers.ModelSerializer):
     ntracks = serializers.IntegerField(source='number_tracks')
     year = serializers.IntegerField(source='publish_year')
@@ -57,4 +58,9 @@ class DiscographySerializer(serializers.ModelSerializer):
             'update',
             'albums',
         )
-        read_only_fields = ('creationdate', 'update')
+        read_only_fields = (
+            'name',
+            'creationdate',
+            'update',
+            'albums'
+        )
