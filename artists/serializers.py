@@ -8,7 +8,7 @@ __all__ = (
 )
 
 
-class AlbumSerializer(serializers.ModelSerializer):
+class NestedAlbumSerializer(serializers.ModelSerializer):
     ntracks = serializers.IntegerField(source='number_tracks')
     year = serializers.IntegerField(source='publish_year')
 
@@ -24,7 +24,7 @@ class AlbumSerializer(serializers.ModelSerializer):
 class ArtistSerializer(serializers.ModelSerializer):
     creationdate = serializers.DateTimeField(source='create_date')
     update = serializers.DateTimeField(source='update_date')
-    albums = AlbumSerializer(source='album_set', many=True)
+    albums = NestedAlbumSerializer(source='album_set', many=True)
 
     class Meta:
         model = Artist
