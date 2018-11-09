@@ -8,9 +8,23 @@ __all__ = (
 )
 
 
+class AlbumSerializer(serializers.ModelSerializer):
+    ntracks = serializers.IntegerField(source='number_tracks')
+    year = serializers.IntegerField(source='publish_year')
+
+    class Meta:
+        model = Album
+        fields = (
+            'title',
+            'ntracks',
+            'year',
+        )
+
+
 class ArtistSerializer(serializers.ModelSerializer):
     creationdate = serializers.DateTimeField(source='create_date')
     update = serializers.DateTimeField(source='update_date')
+    albums = AlbumSerializer(source='album_set', many=True)
 
     class Meta:
         model = Artist
@@ -18,4 +32,6 @@ class ArtistSerializer(serializers.ModelSerializer):
             'name',
             'creationdate',
             'update',
+            'albums',
         )
+        read_only_fields = ('creationdate', 'update')
