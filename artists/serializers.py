@@ -4,8 +4,9 @@ from .models import (
     Album,
 )
 __all__ = (
+    'ArtistSerializer',
+    'AlbumSerializer',
     'DiscographySerializer',
-    'ArtistSerializer'
 )
 
 
@@ -17,6 +18,18 @@ class ArtistSerializer(serializers.ModelSerializer):
             'status'
         )
 
+
+class AlbumSerializer(serializers.ModelSerializer):
+    ntracks = serializers.IntegerField(source='number_tracks')
+    year = serializers.IntegerField(source='publish_year')
+    class Meta:
+        model = Album
+        fields = (
+            'title',
+            'artist',
+            'year',
+            'ntracks',
+        )
 
 class NestedAlbumSerializer(serializers.ModelSerializer):
     ntracks = serializers.IntegerField(source='number_tracks')

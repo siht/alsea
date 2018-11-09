@@ -2,11 +2,16 @@ from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
 from .serializers import (
     ArtistSerializer,
+    AlbumSerializer,
     DiscographySerializer,
 )
-from .models import Artist
+from .models import (
+    Album,
+    Artist,
+)
 __all__ = (
     'ArtistViewSet',
+    'AlbumViewSet',
     'DiscographyListView',
 )
 
@@ -14,6 +19,11 @@ __all__ = (
 class ArtistViewSet(viewsets.ModelViewSet):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
+
+
+class AlbumViewSet(viewsets.ModelViewSet):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
 
 
 class DiscographyListView(ListAPIView):
