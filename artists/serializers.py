@@ -3,6 +3,10 @@ from .models import (
     Artist,
     Album,
 )
+__all__ = (
+    'ArtistSerializer',
+)
+
 
 class ArtistSerializer(serializers.ModelSerializer):
     creationdate = serializers.DateTimeField(source='create_date')
