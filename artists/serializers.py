@@ -4,8 +4,18 @@ from .models import (
     Album,
 )
 __all__ = (
-    'ArtistSerializer',
+    'DiscographySerializer',
+    'ArtistSerializer'
 )
+
+
+class ArtistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Artist
+        fields = (
+            'name',
+            'status'
+        )
 
 
 class NestedAlbumSerializer(serializers.ModelSerializer):
@@ -21,7 +31,7 @@ class NestedAlbumSerializer(serializers.ModelSerializer):
         )
 
 
-class ArtistSerializer(serializers.ModelSerializer):
+class DiscographySerializer(serializers.ModelSerializer):
     creationdate = serializers.DateTimeField(source='create_date')
     update = serializers.DateTimeField(source='update_date')
     albums = NestedAlbumSerializer(source='album_set', many=True)
