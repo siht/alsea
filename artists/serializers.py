@@ -16,4 +16,6 @@ class ArtistSerializer(serializers.ModelSerializer):
         model = Artist
         fields = (
             'name',
+            'creationdate',
+            'update',
         )

@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .serializers import ArtistViewSet
+from .views import ArtistViewSet
 
 
 router = routers.DefaultRouter()
