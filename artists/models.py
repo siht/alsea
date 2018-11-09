@@ -14,7 +14,7 @@ class Artist(models.Model):
 class Album(models.Model):
     title = models.CharField(max_length=128, db_index=True)
     number_tracks = models.IntegerField()
-    publish_date = models.DateField()
+    publish_year = models.IntegerField()
     artist = models.ForeignKey('Artist', on_delete=models.PROTECT)
     active = models.BooleanField(default=True)
     create_date = models.DateTimeField(auto_now=True)
