@@ -1,0 +1,65 @@
+Construir un API Rest con Python Django y Restframework sobre la discografía de artistas.
+
+Debe de contener el siguiente formato como mínimo.
+
+{
+  "name" : "artist",
+  "albums" : [
+    {
+      "title" : "album_one",
+      "ntracks" : 12,
+      "year": 2016
+    },
+    {
+      "title" : "album_two",
+      "ntracks" : 15,
+      "year": 2017
+    }
+  ],
+  "creationdate" : "2018-05-10 09:56:34",
+  "update" : ""
+}
+
+- Se crearan dos tablas, la primera llamada artist_group y la segunda llamada album estos tener adicional los campos de estatus, fechas de creación y de actualización del registro, si creen necesario agregar otros campos.
+
+- Se requiere un servicio para agregar nuevos artistas o  grupos.
+
+- Se requiere un servicio para modificar los artistas o grupos existentes. Puede modificar un solo campo o varios y el servicio gestionar correctamente la petición.
+
+- Se requiere un servicio de agregar nuevo álbum al artista o grupo.
+
+- Se requiere un servicio de modificar álbum existente del artista o grupo. Puede modificar un solo campo o varios y el servicio gestionar correctamente la petición.
+
+- Se requiere un servicio de consulta de álbum por artista, titulo, numero de canciones y año, la búsqueda puede ser por uno o más parámetros, y el servicio gestionar correctamente la petición.
+
+- Se debe de validar los request de los servicios y que responda el servicio adecuadamente, en caso de que no se envié bien la petición.
+
+- Las fecha de creación se envía por request, validar que sea en formato UTC, en caso de venir en otro formato, realizar la actualización.
+
+- El estándar para cada respuesta de servicio debe de quedar de la siguiente manera.
+
+{
+  "code": codigo_http,
+  "msj": {},
+  "extra": {}
+}
+
+Donde
+
+code es el código dependiendo lo que el servicio responde.
+
+msj descripción de respuesta del servicio.
+
+extra información relevante dependiendo la respuesta que regrese el servicio ("Errores de validación.", "información adicional").
+
+- Se requiere que cada servicio genere el log donde se almacene los request y response, como posibles errores para su corrección.
+
+- Se requiere un servicio que consuma el siguiente servicio REST https://gturnquist-quoters.cfapps.io/api/random que genera un random de números y una descripción, se debe de guardar en una tabla con el número y descripción por aparte. Validar que se guarde el numero solamente una vez, si se repite guardarlo en el log.
+
+- Se requiere un servicio que consuma el siguiente servicio SOAP http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL y responsa el resultado en JSON acorde a como regresa la respuesta, el servicio de SOAP. Utilizar el método FullCountryInfoAllCountries. Y mostrarlo en la respuesta del servicio en la sección de extra.
+
+- Se debe manejar versiones de los servicios.
+
+- Las ligas deben ser acorde a lo que se va a realizar en cada servicio.
+
+- Los posibles errores que se generen en la API los servicios deben de tener una respuesta genérica, para que no se rompa el servicio y responda con el estándar anteriormente mencionado.
