@@ -35,7 +35,7 @@ def exception_handler(exc, context):
         data = {
             'status': exc.status_code,
             'msj': None,
-            'extra': data['detail']
+            'extra': data.get('detail') or data
         }
 
         set_rollback()
