@@ -1,3 +1,6 @@
+import django_filters
+from django_filters import FilterSet
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from .serializers import (
     ArtistSerializer,
@@ -22,9 +25,25 @@ class ArtistViewSet(NonRestModelViewSet):
     serializer_class = ArtistSerializer
 
 
+class AlbumFilter(FilterSet):
+    year = django_filters.NumberFilter(field_name='publish_year')
+    ntracks = django_filters.NumberFilter(field_name='number_tracks')
+
+    class Meta:
+        model = Album
+        fields = {
+            'artist': ['exact'],
+            'title': ['exact', 'contains'],
+            'year': ['exact', 'contains'],
+            'ntracks': ['exact', 'contains'],
+        }
+
+
 class AlbumViewSet(NonRestModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = AlbumFilter
 
 
 class DiscographyListView(NonRestListAPIView):
