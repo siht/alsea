@@ -8,3 +8,9 @@ class NonRestListAPIView(mixins.NonRestListModelMixin,
     """
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+
+
+class NonRestRetrieveAPIView(mixins.NonRestRetrieveModelMixin,
+                  GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
